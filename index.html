@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey Home - Train Like a Pro. Right at Home.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a2647 0%, #144272 50%, #205295 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(220,38,38,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            animation: slideDown 1s ease-out;
+        }
+
+        .logo-badge {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        .logo-text {
+            width: 400px;
+            max-width: 90%;
+            margin: 0 auto;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tagline {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 2rem 0 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+            animation: fadeIn 1s ease-out 0.9s both;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.6);
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .app-store-badge {
+            margin-top: 2rem;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .app-store-badge img {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #0a2647;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Why Hockey Home Section */
+        .why-section {
+            background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(10, 38, 71, 0.15);
+            border-color: #205295;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #0a2647;
+        }
+
+        .benefit-text {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: linear-gradient(135deg, #0a2647 0%, #144272 100%);
+            color: white;
+        }
+
+        .features-section .section-title,
+        .features-section .section-subtitle {
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: #dc2626;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section .section-title {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section .section-subtitle {
+            margin-bottom: 2.5rem;
+        }
+
+        /* Privacy Policy Section */
+        .privacy-section {
+            background: #f8fafc;
+            padding: 6rem 2rem;
+        }
+
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-intro {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .privacy-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #205295;
+            transition: all 0.3s ease;
+        }
+
+        .privacy-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateX(5px);
+        }
+
+        .privacy-card h3 {
+            font-size: 1.5rem;
+            color: #0a2647;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .privacy-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .privacy-card a {
+            color: #205295;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-card a:hover {
+            color: #0a2647;
+            text-decoration: underline;
+        }
+
+        .privacy-updated {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a2647;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .logo-badge {
+                width: 140px;
+                height: 140px;
+            }
+
+            .logo-text {
+                width: 300px;
+            }
+
+            .features-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <img src="bear badge.png" alt="Hockey Home Logo" class="logo-badge">
+                <img src="Group 70-2.png" alt="Hockey Home" class="logo-text">
+            </div>
+            <h1 class="tagline">Train Like a Pro. Right at Home.</h1>
+            <p class="subtitle">ML-powered hockey training for young athletes. No ice needed.</p>
+            <!-- <a href="#download" class="cta-button">Download Now</a> -->
+            <div class="app-store-badge">
+                <a href="#" target="_blank">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Hockey Home Section -->
+    <section class="why-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Hockey Home?</h2>
+            <p class="section-subtitle fade-in">Transform your living room into a professional training facility</p>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🏠</div>
+                    <h3 class="benefit-title">Train Anywhere</h3>
+                    <p class="benefit-text">Practice your stick-handling skills at home without needing ice or expensive equipment. All you need is your phone and a stick.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🤖</div>
+                    <h3 class="benefit-title">AI-Powered</h3>
+                    <p class="benefit-text">Advanced machine learning technology tracks your movements in real-time, providing instant feedback on your technique.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">🎮</div>
+                    <h3 class="benefit-title">Gamified Learning</h3>
+                    <p class="benefit-text">Make training fun with engaging game modes, challenges, and rewards that keep you motivated and coming back for more.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">📈</div>
+                    <h3 class="benefit-title">Track Progress</h3>
+                    <p class="benefit-text">Monitor your improvement with detailed stats, achievements, and performance metrics that show your growth over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Powerful Features</h2>
+            <p class="section-subtitle fade-in">Everything you need to become a better hockey player</p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Multiple Training Modes</h3>
+                    <p class="feature-description">Keep your training fresh and engaging with varied game modes including Learning Mode, Collecting Objects, Avoiding Objects, Mix Mode, and Hit-the-Bear challenges. Each mode targets different skills to build well-rounded players.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Real-Time Multiplayer</h3>
+                    <p class="feature-description">Challenge your friends and teammates in competitive real-time matches. Practice together, compete for top scores, and push each other to improve through friendly competition.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🏆</span>
+                    <h3 class="feature-title">Leaderboards & Achievements</h3>
+                    <p class="feature-description">Climb the ranks and unlock achievements as you master your skills. Track daily streaks, reach survival milestones, and compete for first place on global leaderboards powered by real-time performance metrics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Training Modes</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">Real-Time</span>
+                    <span class="stat-label">Multiplayer Action</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Ways to Improve</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title fade-in">Ready to Level Up Your Game?</h2>
+                <p class="section-subtitle fade-in">Join thousands of young hockey players training smarter, not harder. Download Hockey Home today and start your journey to becoming a pro.</p>
+                <!-- <a href="#" class="cta-button fade-in">Download on the App Store</a> -->
+                <div class="app-store-badge fade-in" style="margin-top: 2rem;">
+                    <a href="#" target="_blank">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section" id="privacy">
+        <div class="container">
+            <h2 class="section-title fade-in">Privacy Policy</h2>
+            <div class="privacy-content fade-in">
+                <p class="privacy-intro">Your privacy matters to us. Hockey Home is designed with privacy at its core.</p>
+                
+                <div class="privacy-card">
+                    <h3>🔒 We Don't Collect Your Data</h3>
+                    <p>Hockey Home does not collect, store, or share any personal information from users. All game data, including scores, achievements, and progress, is stored locally on your device.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3>📱 What We Access</h3>
+                    <p>The app requires camera access to enable real-time object detection for gameplay. The camera feed is processed entirely on your device and is never recorded, transmitted, or stored.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3>🎮 GameKit Integration</h3>
+                    <p>If you choose to use multiplayer features or leaderboards, Apple's GameKit handles authentication through your Apple ID. We do not receive or store any personal information from this process. Please refer to <a href="https://www.apple.com/legal/privacy/" target="_blank">Apple's Privacy Policy</a> for more information.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3>👨‍👩‍👧‍👦 Safe for Kids</h3>
+                    <p>Hockey Home is designed to be safe for young players. We do not include any advertising, in-app purchases, or third-party tracking. There is no chat functionality or user-generated content that could expose children to inappropriate material.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3>📧 Contact Us</h3>
+                    <p>If you have any questions about our privacy practices, please contact us at <a href="mailto:privacy@hockeyhome.app">krishnarp060@gmail.com</a></p>
+                    <p class="privacy-updated">Last Updated: December 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hockey Home. All rights reserved.</p>
+            <p>Made with ❤️ for young hockey players everywhere</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;"><a href="#privacy" style="color: white; text-decoration: underline;">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+    
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+    
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    
+        // Auto-scroll to privacy section if URL contains #privacy or /privacy
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            const path = window.location.pathname;
+            
+            if (hash === '#privacy' || path.includes('/privacy')) {
+                setTimeout(() => {
+                    const privacySection = document.getElementById('privacy');
+                    if (privacySection) {
+                        privacySection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
